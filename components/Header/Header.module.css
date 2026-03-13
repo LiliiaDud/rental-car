@@ -1,0 +1,43 @@
+.header {
+    width: 100%;
+    background: var(--badges);
+    border-bottom: 1px solid var(--gray-light);
+    padding: 26px 0;
+}
+
+.wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+}
+
+.listHeader {
+    display: flex;
+    gap: 32px;
+}
+
+.listNavItem {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.25;
+    color: var(--main);
+    transition: color 0.2s ease;
+}
+
+.listNavItem:hover {
+    color: var(--button-hover);
+}
+
+.active {
+    color: var(--button-hover);
+}

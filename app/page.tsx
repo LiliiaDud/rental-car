@@ -4,7 +4,7 @@ import css from "./page.module.css";
 function Home() {
   return (
     <main className={css.main}>
-      <div className={css.container}>
+      <div className="container">
         <div className={css.content}>
           <h1 className={css.title}>
             Find your perfect rental car

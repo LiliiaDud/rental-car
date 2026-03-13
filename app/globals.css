@@ -1,10 +1,8 @@
-@import "tailwindcss";
-
 :root {
   --font-family: var(--font-manrope), sans-serif;
   --second-family: var(--font-inter), sans-serif;
 
-  --background: #ffffff;
+  --white: #ffffff;
   --inputs: #f7f7f7;
   --badges: #f2f4f7;
   --main: #101828;
@@ -68,4 +66,27 @@ img {
   display: block;
   max-width: 100%;
   height: auto;
+}
+
+.container {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 20px;
+  max-width: 375px;
+  position: relative;
+  z-index: 1;
+}
+
+@media (min-width: 768px) {
+  .container {
+    max-width: 768px;
+    padding: 0 32px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .container {
+    max-width: 1440px;
+    padding: 0 120px;
+  }
 }

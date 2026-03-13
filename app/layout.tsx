@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Manrope, Inter } from "next/font/google";
+import Header from '@/components/Header/Header';
 
 import "./globals.css";
 
@@ -25,9 +26,10 @@ export default function RootLayout({
 }>) {
     return (
       <html lang="en">
-      <body className={`${manrope.variable} ${inter.variable}`}>
-      {children}
-      </body>
+        <body className={`${manrope.variable} ${inter.variable}`}>
+          <Header />
+          {children}
+        </body>
       </html>
     );
 };

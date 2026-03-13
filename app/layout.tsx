@@ -7,11 +7,13 @@ import "./globals.css";
 const manrope = Manrope({
     subsets: ["latin"],
     variable: "--font-manrope",
+    display: "swap",
 });
 
 const inter = Inter({
     subsets: ["latin"],
     variable: "--font-inter",
+    display: "swap",
 });
 
 export const metadata: Metadata = {

@@ -17,6 +17,22 @@ const inter = Inter({
 export const metadata: Metadata = {
     title: "RentalCar | Car Rental Service",
     description: "Reliable and budget-friendly car rentals for any journey.",
+    icons: {
+      icon: '/favicon.ico',
+    },
+  openGraph: {
+    title: 'Rental Car App',
+    description: 'A platform for renting cars with ease and convenience',
+    url: 'https://localhost:3000',
+    images: [
+      {
+        url: '/images/hero.webp',
+        width: 1200,
+        height: 630,
+        alt: 'RentalCar Hero Image',
+      },
+    ],
+  },
 };
 
 export default function RootLayout({

@@ -1,11 +1,16 @@
-import css from './CatalogPage.module.css';
+import CarList from "@/components/CarList/CarList";
+import { getCars } from '@/lib/api/clientApi';
 
-function CatalogPage () {
-    return (
-    <div>
-        <h1>Car Catalog</h1>
-    </div>
-    )
-};
+async function CatalogPage() {
+  const data = await getCars();
+
+  return (
+    <main className="main">
+      <div className="container">
+        <CarList cars={data.cars} />
+      </div>
+    </main>
+  );
+}
 
 export default CatalogPage;

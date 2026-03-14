@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Manrope, Inter } from "next/font/google";
 import Header from '@/components/Header/Header';
 
+import css from '@/app/page.module.css';
 import "./globals.css";
 
 const manrope = Manrope({
@@ -43,11 +44,11 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-      <html lang="en">
+      <html lang="en" data-scroll-behavior="smooth">
         <body className={`${manrope.variable} ${inter.variable}`}>
           <Header />
           {children}
         </body>
       </html>
     );
-};
+}

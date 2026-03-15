@@ -1,0 +1,96 @@
+.form {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-top: 84px;
+  gap: 16px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.brandField {
+  width: 204px;
+}
+
+.priceField {
+  width: 196px;
+}
+
+.mileageField {
+  width: 320px;
+}
+
+.mileageWrap {
+  display: flex;
+  width: 100%;
+}
+
+.label {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.33;
+  color: var(--gray);
+}
+
+.mileageInput {
+  display: flex;
+  align-items: center;
+  height: 44px;
+  background-color: var(--inputs);
+}
+
+.leftInput {
+  width: 160px;
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
+  border-right: 1px solid var(--gray-light);
+}
+
+.rightInput {
+  width: 160px;
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
+}
+
+.inputPrefix {
+  font-weight: 500;
+  font-size: 16px;
+  padding-left: 24px;
+  margin-right: 4px;
+  line-height: 1.25;
+  color: var(--main);
+}
+
+.input {
+  width: 100%;
+  height: 100%;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.25;
+  border: none;
+  padding: 12px 24px 12px 4px;
+  color: var(--main);
+  background-color: transparent;
+  outline: none;
+}
+
+.searchBtn {
+  width: 156px;
+  height: 44px;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.25;
+  border-radius: 12px;
+  border: none;
+  color: var(--white);
+  background-color: var(--button);
+  transition: background-color 250ms ease;
+}
+
+.searchBtn:hover {
+  background-color: var(--button-hover);
+}

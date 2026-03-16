@@ -1,5 +1,7 @@
 'use client';
 import { useCarsStore } from '@/lib/store/carsStore';
+import Select from '../Select/Select';
+
 import css from './Filters.module.css';
 
 interface FiltersProps {
@@ -9,8 +11,24 @@ interface FiltersProps {
 
 const prices = ['30', '40', '50', '60', '70', '80'];
 
-function Filters({ brands, onSearch }: FiltersProps) {
+function formatMileage(value: string) {
+  if (!value) return '';
+  return Number(value).toLocaleString('en-US');
+}
+
+function CarFilters({ brands, onSearch }: FiltersProps) {
   const { filters, setFilter } = useCarsStore();
+
+  const brandOptions = brands.map(brand => ({
+    value: brand,
+    label: brand,
+  }));
+
+  const priceOptions = prices.map(price => ({
+    value: price,
+    label: `To $${price}`,
+    menuLabel: price,
+  }));
 
   const handleMileageChange = (name: 'minMileage' | 'maxMileage', value: string) => {
     const normalizedValue = value.replace(/[^\d]/g, '');
@@ -25,61 +43,57 @@ function Filters({ brands, onSearch }: FiltersProps) {
         onSearch();
       }}
     >
-      <div className={css.field}>
+      <div className={`${css.filterGroup} ${css.filterBrand}`}>
         <label className={css.label} htmlFor="brand">
           Car brand
         </label>
-        <select
+
+        <Select
           id="brand"
-          className={css.select}
           value={filters.brand}
-          onChange={e => setFilter('brand', e.target.value)}
-        >
-          <option value="">Choose a brand</option>
-          {brands.map(brand => (
-            <option key={brand} value={brand}>
-              {brand}
-            </option>
-          ))}
-        </select>
+          placeholder="Choose a brand"
+          options={brandOptions}
+          onChange={value => setFilter('brand', value)}
+        />
       </div>
 
-      <div className={css.field}>
+      <div className={`${css.filterGroup} ${css.filterPrice}`}>
         <label className={css.label} htmlFor="price">
           Price/ 1 hour
         </label>
-        <select
+
+        <Select
           id="price"
-          className={css.select}
           value={filters.rentalPrice}
-          onChange={e => setFilter('rentalPrice', e.target.value)}
-        >
-          <option value="">Choose a price</option>
-          {prices.map(price => (
-            <option key={price} value={price}>
-              {price}
-            </option>
-          ))}
-        </select>
+          placeholder="Choose a price"
+          options={priceOptions}
+          onChange={value => setFilter('rentalPrice', value)}
+        />
       </div>
 
-      <div className={css.field}>
+      <div className={`${css.filterGroup} ${css.filterMileage}`}>
         <label className={css.label}>Car mileage / km</label>
+
         <div className={css.mileageWrap}>
-          <input
-            className={css.input}
-            type="text"
-            placeholder="From"
-            value={filters.minMileage}
-            onChange={e => handleMileageChange('minMileage', e.target.value)}
-          />
-          <input
-            className={css.input}
-            type="text"
-            placeholder="To"
-            value={filters.maxMileage}
-            onChange={e => handleMileageChange('maxMileage', e.target.value)}
-          />
+          <label className={`${css.mileageInput} ${css.mileageInputFrom}`}>
+            <span className={css.inputPrefix}>From</span>
+            <input
+              className={css.input}
+              type="text"
+              value={formatMileage(filters.minMileage)}
+              onChange={e => handleMileageChange('minMileage', e.target.value)}
+            />
+          </label>
+
+          <label className={`${css.mileageInput} ${css.mileageInputTo}`}>
+            <span className={css.inputPrefix}>To</span>
+            <input
+              className={css.input}
+              type="text"
+              value={formatMileage(filters.maxMileage)}
+              onChange={e => handleMileageChange('maxMileage', e.target.value)}
+            />
+          </label>
         </div>
       </div>
 
@@ -90,4 +104,4 @@ function Filters({ brands, onSearch }: FiltersProps) {
   );
 }
 
-export default Filters;
+export default CarFilters;

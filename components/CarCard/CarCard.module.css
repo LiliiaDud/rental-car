@@ -89,3 +89,8 @@
   background: var(--button);
   color: var(--white);
 }
+
+.button:hover,
+.button:focus {
+  background-color: var(--button-hover);
+}

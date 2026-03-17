@@ -45,7 +45,7 @@ function CarCard({ car }: Props) {
             {car.brand} <span className={css.model}>{car.model}</span>, {car.year}
           </h3>
 
-          <p className={css.price}>${car.rentalPrice}</p>
+          <p className={css.price}>{car.rentalPrice}</p>
         </div>
 
         <p className={css.meta}>

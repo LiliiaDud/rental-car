@@ -35,7 +35,7 @@ function CarDetails({ car }: CarDetailsProps) {
               </h1>
               <div className={css.meta}>
                 <p className={css.metaItem}>
-                  <svg className={css.metaIcon}>
+                  <svg className={css.metaIcon} aria-hidden="true">
                     <use href="/sprite.svg#icon-local" />
                   </svg>
                   {city}, {country}
@@ -71,19 +71,19 @@ function CarDetails({ car }: CarDetailsProps) {
                   Year: {car.year}
                 </li>
                 <li className={css.item}>
-                  <svg className={css.icon}>
+                  <svg className={css.icon} aria-hidden="true">
                     <use href="/sprite.svg#icon-car" />
                   </svg>
                   Type: {car.type}
                 </li>
                 <li className={css.item}>
-                  <svg className={css.icon}>
+                  <svg className={css.icon} aria-hidden="true">
                     <use href="/sprite.svg#icon-fuel-pump" />
                   </svg>
                   Fuel Consumption: {car.fuelConsumption}
                 </li>
                 <li className={css.item}>
-                  <svg className={css.icon}>
+                  <svg className={css.icon} aria-hidden="true">
                     <use href="/sprite.svg#icon-gear" />
                   </svg>
                   Engine Size: {car.engineSize}

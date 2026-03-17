@@ -1,17 +1,18 @@
 'use client';
 
-import Image from "next/image";
-import Link from "next/link";
-import { Car } from "@/types/car";
-
-import css from "./CarCard.module.css";
+import Image from 'next/image';
+import Link from 'next/link';
+import { Car } from '@/types/car';
+import { useState } from 'react';
+import css from './CarCard.module.css';
 
 interface Props {
   car: Car;
-};
+}
 
- function CarCard({ car }: Props) {
-  const addressParts = car.address.split(", ");
+function CarCard({ car }: Props) {
+  const [isFavorite, setIsFavorite] = useState(false);
+  const addressParts = car.address.split(', ');
   const city = addressParts[1];
   const country = addressParts[2];
 
@@ -28,15 +29,23 @@ interface Props {
           height={268}
           priority
         />
+        <button
+          onClick={() => setIsFavorite(prev => !prev)}
+          className={css.favoriteBtn}
+          type="button"
+        >
+          <svg className={`${css.iconFavorite} ${isFavorite ? css.activeFavorite : ''}`}>
+            <use href={isFavorite ? '/sprite.svg#icon-heart1' : '/sprite.svg#icon-heart0'} />
+          </svg>
+        </button>
       </div>
       <div className={css.content}>
         <div className={css.topRow}>
           <h3 className={css.title}>
-            {car.brand}{" "}
-            <span className={css.model}>{car.model}</span>, {car.year}
+            {car.brand} <span className={css.model}>{car.model}</span>, {car.year}
           </h3>
 
-          <p className={css.price}>{car.rentalPrice}</p>
+          <p className={css.price}>${car.rentalPrice}</p>
         </div>
 
         <p className={css.meta}>

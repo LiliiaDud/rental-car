@@ -31,13 +31,13 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 8px;
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 1.25;
   gap: 8px;
 }
 
 .title {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.25;
 }
 
 .model {
@@ -45,12 +45,36 @@
 }
 
 .price {
+  font-weight: 500;
+  font-size: 16px;
 }
 
 .meta {
   font-size: 12px;
   line-height: 1.33;
   color: var(--gray);
+}
+
+.favoriteBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  border: none;
+  background: transparent;
+}
+
+.iconFavorite {
+  fill: var(--white);
+  width: 16px;
+  height: 16px;
+  transition: fill 250ms ease;
+}
+
+.activeFavorite {
+  fill: var(--button);
 }
 
 .button {

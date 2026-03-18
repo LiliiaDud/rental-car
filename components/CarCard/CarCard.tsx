@@ -12,9 +12,7 @@ interface Props {
 
 function CarCard({ car }: Props) {
   const [isFavorite, setIsFavorite] = useState(false);
-  const addressParts = car.address.split(', ');
-  const city = addressParts[1];
-  const country = addressParts[2];
+  const [, city, country] = car.address.split(', ');
 
   const mileage = car.mileage.toLocaleString('uk-UA');
 
@@ -27,7 +25,6 @@ function CarCard({ car }: Props) {
           alt={`${car.brand} ${car.model}`}
           width={276}
           height={268}
-          priority
         />
         <button
           onClick={() => setIsFavorite(prev => !prev)}
@@ -45,7 +42,7 @@ function CarCard({ car }: Props) {
             {car.brand} <span className={css.model}>{car.model}</span>, {car.year}
           </h3>
 
-          <p className={css.price}>{car.rentalPrice}</p>
+          <p className={css.price}>${car.rentalPrice}</p>
         </div>
 
         <p className={css.meta}>

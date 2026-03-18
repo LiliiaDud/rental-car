@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
 import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
 import { getCars, getBrands } from '@/lib/api/clientApi';
 import { defaultFilters, useCarsStore } from '@/lib/store/carsStore';
@@ -13,32 +13,37 @@ import css from './CatalogClient.module.css';
 function CatalogClient() {
   const { filters } = useCarsStore();
 
-  const [queryFilters, setQueryFilters] = useState(defaultFilters);
+  const [submittedFilters, setSubmittedFilters] = useState(defaultFilters);
 
   const { data: brands = [] } = useQuery({
     queryKey: ['brands'],
     queryFn: getBrands,
+    refetchOnMount: false,
   });
 
   const { data, isLoading, isFetching, isError, fetchNextPage, hasNextPage, isFetchingNextPage } =
     useInfiniteQuery({
-      queryKey: ['cars', queryFilters],
+      queryKey: ['cars', submittedFilters],
       queryFn: ({ pageParam = 1 }) =>
         getCars({
-          ...queryFilters,
+          ...submittedFilters,
           page: String(pageParam),
           limit: '12',
         }),
       initialPageParam: 1,
-      getNextPageParam: lastPage =>
-        lastPage.page < lastPage.totalPages ? lastPage.page + 1 : undefined,
-      placeholderData: undefined,
+      getNextPageParam: lastPage => {
+        const currentPage = Number(lastPage.page);
+        const totalPages = Number(lastPage.totalPages);
+
+        return currentPage < totalPages ? currentPage + 1 : undefined;
+      },
+      refetchOnMount: false,
     });
 
-  const cars = useMemo(() => data?.pages.flatMap(page => page.cars) ?? [], [data]);
+  const cars = data?.pages.flatMap(page => page.cars) ?? [];
 
   const handleSearch = () => {
-    setQueryFilters(filters);
+    setSubmittedFilters(filters);
   };
 
   return (
@@ -46,7 +51,7 @@ function CatalogClient() {
       <div className="container">
         <CarFilters brands={brands} onSearch={handleSearch} />
 
-        {isLoading || (isFetching && <Loader />)}
+        {(isLoading || isFetching) && <Loader />}
 
         {cars.length > 0 && <CarList cars={cars} />}
 

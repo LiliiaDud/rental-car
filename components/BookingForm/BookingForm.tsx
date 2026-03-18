@@ -7,66 +7,70 @@ import * as Yup from 'yup';
 import DatePicker from 'react-datepicker';
 import { registerLocale } from 'react-datepicker';
 import { enGB } from 'date-fns/locale';
+import toast from 'react-hot-toast';
 
 registerLocale('enGB', enGB);
 
 interface BookingFormValues {
   name: string;
   email: string;
-  date: string;
   comment: string;
 }
 
-const BookingFormSchema = Yup.object().shape({
+const BookingFormSchema = Yup.object({
   name: Yup.string()
     .trim()
     .min(2, 'Name must be at least 2 characters')
     .max(50, 'Name is too long')
     .required('Name is required'),
+
   email: Yup.string().trim().email('Enter a valid email').required('Email is required'),
-  date: Yup.string().required('Booking date is required'),
+
+  date: Yup.date().required('Booking date is required'),
+
   comment: Yup.string().trim().max(500, 'Comment is too long'),
 });
 
 const initialValues: BookingFormValues = {
   name: '',
   email: '',
-  date: '',
   comment: '',
 };
 
 function BookingForm() {
-  const [values, setValues] = useState<BookingFormValues>(initialValues);
-  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [values, setValues] = useState(initialValues);
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
+  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = event.target;
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
 
-    setValues(prev => ({
-      ...prev,
-      [name]: value,
-    }));
+    setValues(prev => ({ ...prev, [name]: value }));
 
     if (errors[name]) {
-      setErrors(prev => ({
-        ...prev,
-        [name]: '',
-      }));
+      setErrors(prev => ({ ...prev, [name]: '' }));
     }
   };
 
-  const handleSubmit = async (formData: FormData) => {
-    const formValues: BookingFormValues = {
-      name: formData.get('name') as string,
-      email: formData.get('email') as string,
-      date: selectedDate ? selectedDate.toISOString().split('T')[0] : '',
-      comment: formData.get('comment') as string,
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    const formValues = {
+      ...values,
+      date: selectedDate,
     };
 
     try {
       setErrors({});
+
       await BookingFormSchema.validate(formValues, { abortEarly: false });
+
+      setIsSubmitting(true);
+
+      await new Promise(resolve => setTimeout(resolve, 800));
+
+      toast.success('Booking request sent!');
 
       setValues(initialValues);
       setSelectedDate(null);
@@ -74,14 +78,18 @@ function BookingForm() {
       if (err instanceof Yup.ValidationError) {
         const formErrors: Record<string, string> = {};
 
-        err.inner.forEach((error: Yup.ValidationError) => {
+        err.inner.forEach(error => {
           if (error.path) {
             formErrors[error.path] = error.message;
           }
         });
 
         setErrors(formErrors);
+      } else {
+        toast.error('Something went wrong');
       }
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -89,7 +97,8 @@ function BookingForm() {
     <section className={css.booking}>
       <h2 className={css.title}>Book your car now</h2>
       <p className={css.subtitle}>Stay connected! We are always ready to help you.</p>
-      <form action={handleSubmit} className={css.form}>
+
+      <form onSubmit={handleSubmit} className={css.form}>
         <div className={css.fieldWrapper}>
           <input
             type="text"
@@ -116,44 +125,37 @@ function BookingForm() {
 
         <div className={css.fieldWrapper}>
           <DatePicker
-            name="date"
             selected={selectedDate}
             onChange={(date: Date | null) => {
               setSelectedDate(date);
 
               if (errors.date) {
-                setErrors(prev => ({
-                  ...prev,
-                  date: '',
-                }));
+                setErrors(prev => ({ ...prev, date: '' }));
               }
             }}
             placeholderText="Booking date"
             className={css.input}
-            dateFormat="yyyy-MM-dd"
-            calendarClassName={css.calendar}
-            popperClassName={css.popper}
             minDate={new Date()}
+            dateFormat="yyyy-MM-dd"
             locale="enGB"
-            formatWeekDay={nameOfDay => nameOfDay.slice(0, 3)}
           />
           {errors.date && <span className={css.error}>{errors.date}</span>}
         </div>
 
         <div className={css.fieldWrapper}>
           <textarea
-            className={css.textarea}
             name="comment"
-            placeholder="Comment"
             value={values.comment}
             onChange={handleChange}
+            placeholder="Comment"
+            className={css.textarea}
             rows={3}
           />
           {errors.comment && <span className={css.error}>{errors.comment}</span>}
         </div>
 
-        <button type="submit" className={css.button}>
-          Send
+        <button type="submit" className={css.button} disabled={isSubmitting}>
+          {isSubmitting ? 'Sending...' : 'Send'}
         </button>
       </form>
     </section>

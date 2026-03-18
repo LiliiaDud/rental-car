@@ -116,6 +116,27 @@ img {
   background: var(--button-hover);
 }
 
+.notFoundWrapper {
+  min-height: calc(100vh - 68px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+
+.notFoundLink {
+  padding: 12px 24px;
+  border-radius: 12px;
+  background-color: var(--button);
+  color: white;
+  text-decoration: none;
+}
+
+.notFoundLink:hover {
+  background-color: var(--button-hover);
+}
+
 @media (min-width: 768px) {
   .container {
     max-width: 768px;

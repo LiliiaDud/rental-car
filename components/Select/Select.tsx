@@ -85,20 +85,6 @@ function Select({ id, value, placeholder, options, onChange, className = '' }: S
         </span>
 
         <span className={css.selectActions}>
-          {selectedOption && (
-            <span
-              role="button"
-              className={css.clearBtn}
-              onClick={e => {
-                e.stopPropagation();
-                onChange('');
-                setIsOpen(false);
-              }}
-            >
-              ×
-            </span>
-          )}
-
           <svg className={`${css.icon} ${isOpen ? css.iconOpen : ''}`}>
             <use href="/sprite.svg#icon-chevron-down" />
           </svg>

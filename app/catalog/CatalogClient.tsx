@@ -20,7 +20,7 @@ function CatalogClient() {
     queryFn: getBrands,
   });
 
-  const { data, isLoading, isError, fetchNextPage, hasNextPage, isFetchingNextPage } =
+  const { data, isLoading, isFetching, isError, fetchNextPage, hasNextPage, isFetchingNextPage } =
     useInfiniteQuery({
       queryKey: ['cars', queryFilters],
       queryFn: ({ pageParam = 1 }) =>
@@ -32,6 +32,7 @@ function CatalogClient() {
       initialPageParam: 1,
       getNextPageParam: lastPage =>
         lastPage.page < lastPage.totalPages ? lastPage.page + 1 : undefined,
+      placeholderData: undefined,
     });
 
   const cars = useMemo(() => data?.pages.flatMap(page => page.cars) ?? [], [data]);
@@ -45,7 +46,7 @@ function CatalogClient() {
       <div className="container">
         <CarFilters brands={brands} onSearch={handleSearch} />
 
-        {isLoading && <Loader />}
+        {isLoading || (isFetching && <Loader />)}
 
         {cars.length > 0 && <CarList cars={cars} />}
 

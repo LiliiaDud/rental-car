@@ -22,7 +22,7 @@ html,
 body {
   margin: 0;
   padding: 0;
-  background-color: var(--background);
+  background-color: var(--white);
   font-family: var(--font-manrope);
   color: var(--main);
   scroll-behavior: smooth;
@@ -50,7 +50,9 @@ a {
   color: currentColor;
   text-decoration: none;
   cursor: pointer;
-  transition: color 0.2s ease, opacity 0.2s ease;
+  transition:
+    color 0.2s ease,
+    opacity 0.2s ease;
 }
 
 button {
@@ -75,6 +77,43 @@ img {
   max-width: 375px;
   position: relative;
   z-index: 1;
+}
+
+.errorWrapper {
+  max-width: 480px;
+  margin: 80px auto;
+  padding: 32px 24px;
+  background: var(--badges);
+  border: 1px solid var(--gray-light);
+  border-radius: 12px;
+  text-align: center;
+}
+
+.errorWrapper h2 {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: var(--main);
+}
+
+.errorWrapper p {
+  font-size: 16px;
+  color: var(--gray);
+  margin-bottom: 24px;
+  line-height: 1.4;
+}
+
+.errorBtn {
+  padding: 12px 20px;
+  background: var(--button);
+  color: var(--white);
+  font-weight: 600;
+  border-radius: 10px;
+  transition: background-color 0.2s ease;
+}
+
+.errorBtn:hover {
+  background: var(--button-hover);
 }
 
 @media (min-width: 768px) {

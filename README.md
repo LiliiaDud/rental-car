@@ -1,36 +1,71 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+<h1 align="center">🚗 Car Rental App</h1>
+<p align="center">A modern web application for browsing, filtering and booking rental cars</p>
 
-## Getting Started
+---
 
-First, run the development server:
+## 📌 Description
+
+A web application for browsing and booking rental cars. Users can filter cars by brand, price, and
+mileage, view detailed information, and submit booking requests.
+
+## 🔗 Preview
+
+<p align="center">
+  <img src="./public/images/readme.webp" alt="RentalCar Preview" width="700"/>
+</p>
+
+[Live Demo](https://rental-car-phi-ashen.vercel.app)
+[GitHub Repository](https://github.com/LiliiaDud/rental-car)
+
+## ⚙️ Features
+
+- Filter cars by:
+  - Brand
+  - Rental price
+  - Mileage
+- Detailed car information page
+- Infinite pagination with **Load More**
+- Booking form with validation (Yup)
+- Global state with Zustand
+- Data fetching & caching with TanStack Query
+
+## 🛠️ Tech Stack
+
+- **Next.js (App Router)**
+- **React**
+- **TypeScript**
+- **TanStack React Query**
+- **Axios**
+- **Zustand**
+- **Yup**
+- **React DatePicker**
+- **CSS Modules**
+
+## 🚀 Installation
 
 ```bash
+git clone https://github.com/LiliiaDud/rental-car.git
+cd rental-car
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🌐 Environment variables
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Create .env.local:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+NEXT_PUBLIC_API_URL=your_api_url
+```
 
-## Learn More
+## ▶️ Usage
 
-To learn more about Next.js, take a look at the following resources:
+- Navigate to /catalog
+- Apply filters to find suitable cars
+- Click a car to view details
+- Submit a booking request
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Author
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+**liliia Dudnyk** [@Liliia Dudnyk](https://github.com/LiliiaDud)  
+ Fullstack Developer

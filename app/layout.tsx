@@ -18,15 +18,17 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://rental-car-phi-ashen.vercel.app'),
+
   title: 'RentalCar | Car Rental Service',
-  description: 'Reliable and budget-friendly car rentals for any journey.',
+  description: 'A platform for renting cars with ease and convenience',
   icons: {
     icon: '/favicon.ico',
   },
   openGraph: {
-    title: 'Rental Car App',
+    title: 'RentalCar | Car Rental Service',
     description: 'A platform for renting cars with ease and convenience',
-    url: 'https://localhost:3000',
+    url: 'https://rental-car-phi-ashen.vercel.app',
     images: [
       {
         url: '/images/hero.webp',

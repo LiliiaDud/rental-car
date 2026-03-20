@@ -1,23 +1,24 @@
 .booking {
-  width: 640px;
+  width: 100%;
+  max-width: 640px;
   border: 1px solid var(--gray-light);
-  border-radius: 10px;
-  padding: 32px;
+  border-radius: 16px;
+  padding: 20px;
 }
 
 .title {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 600;
-  line-height: 120%;
+  line-height: 1.2;
   margin-bottom: 8px;
 }
 
 .subtitle {
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 500;
-  line-height: 125%;
+  line-height: 1.25;
   color: var(--gray);
-  margin-bottom: 24px;
+  margin-bottom: 16px;
 }
 
 .form {
@@ -26,26 +27,34 @@
   gap: 16px;
 }
 
+.fieldWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
 .input,
 .textarea {
+  width: 100%;
   box-sizing: border-box;
   font-weight: 500;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 1.25;
-  width: 100%;
-  border: none;
   color: var(--main);
+
+  border: none;
   border-radius: 12px;
   background-color: var(--inputs);
-  padding: 12px 20px;
+
+  padding: 10px 16px;
 }
 
 .input {
-  height: 48px;
+  height: 44px;
 }
 
 .textarea {
-  min-height: 88px;
+  min-height: 72px;
   resize: none;
   font-family: inherit;
 }
@@ -61,18 +70,23 @@
 }
 
 .button {
-  align-self: center;
+  width: 100%;
   margin-top: 8px;
+
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 12px 51px;
+
+  padding: 12px;
   min-height: 44px;
+
   border: none;
+  border-radius: 12px;
+
   font-weight: 600;
   font-size: 16px;
   color: var(--white);
-  border-radius: 12px;
+
   background-color: var(--button);
   transition: background-color 250ms ease;
 }
@@ -82,18 +96,14 @@
   background-color: var(--button-hover);
 }
 
-.fieldWrapper {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
 .error {
   font-size: 12px;
   line-height: 1.33;
   padding-left: 4px;
   color: #a83c34;
 }
+
+/* DATEPICKER */
 
 .calendar {
   border: 1px solid var(--button) !important;
@@ -136,7 +146,6 @@
 }
 
 .calendar :global(.react-datepicker__day:hover) {
-  border-radius: 50%;
   background-color: var(--gray-light);
 }
 
@@ -149,4 +158,50 @@
 
 .popper {
   z-index: 20;
+}
+
+/* TABLET */
+@media screen and (min-width: 768px) {
+  .booking {
+    padding: 24px;
+  }
+
+  .title {
+    font-size: 20px;
+  }
+
+  .subtitle {
+    font-size: 16px;
+  }
+
+  .input,
+  .textarea {
+    font-size: 16px;
+    padding: 12px 20px;
+  }
+
+  .input {
+    height: 48px;
+  }
+
+  .textarea {
+    min-height: 88px;
+  }
+
+  .button {
+    width: auto;
+    padding: 12px 40px;
+    align-self: center;
+  }
+}
+
+/* DESKTOP */
+@media screen and (min-width: 1440px) {
+  .booking {
+    padding: 32px;
+  }
+
+  .button {
+    padding: 12px 51px;
+  }
 }

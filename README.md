@@ -14,8 +14,12 @@ mileage, view detailed information, and submit booking requests.
   <img src="./public/images/readme.webp" alt="RentalCar Preview" width="700"/>
 </p>
 
-[Live Demo](https://rental-car-phi-ashen.vercel.app)
-[GitHub Repository](https://github.com/LiliiaDud/rental-car)
+<p align="center">
+  <a href="https://rental-car-phi-ashen.vercel.app">🌐 Live Demo</a> •
+  <a href="https://github.com/LiliiaDud/rental-car">📁 GitHub Repository</a>
+</p>
+
+---
 
 ## ⚙️ Features
 
@@ -67,5 +71,5 @@ NEXT_PUBLIC_API_URL=your_api_url
 
 ### Author
 
-**liliia Dudnyk** [@Liliia Dudnyk](https://github.com/LiliiaDud)  
+**Liliia Dudnyk** [@Liliia Dudnyk](https://github.com/LiliiaDud)  
  Fullstack Developer

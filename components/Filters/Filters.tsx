@@ -17,7 +17,7 @@ function formatMileage(value: string) {
 }
 
 function CarFilters({ brands, onSearch }: FiltersProps) {
-  const { filters, setFilter } = useCarsStore();
+  const { filters, setFilter, resetFilters } = useCarsStore();
 
   const brandOptions = brands.map(brand => ({
     value: brand,
@@ -33,6 +33,11 @@ function CarFilters({ brands, onSearch }: FiltersProps) {
   const handleMileageChange = (name: 'minMileage' | 'maxMileage', value: string) => {
     const normalizedValue = value.replace(/[^\d]/g, '');
     setFilter(name, normalizedValue);
+  };
+
+  const handleReset = () => {
+    resetFilters();
+    onSearch();
   };
 
   return (
@@ -97,9 +102,15 @@ function CarFilters({ brands, onSearch }: FiltersProps) {
         </div>
       </div>
 
-      <button className={css.searchBtn} type="submit">
-        Search
-      </button>
+      <div className={css.actions}>
+        <button className={css.searchBtn} type="submit">
+          Search
+        </button>
+
+        <button className={css.resetBtn} type="button" onClick={handleReset}>
+          Reset
+        </button>
+      </div>
     </form>
   );
 }

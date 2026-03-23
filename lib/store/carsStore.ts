@@ -53,7 +53,6 @@ export const useCarsStore = create<CarsStore>()(
     {
       name: 'cars-store',
       partialize: state => ({
-        filters: state.filters,
         favorites: state.favorites,
       }),
     }
